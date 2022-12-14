@@ -77,3 +77,5 @@ n_flowers_this_day
 ### 1. Добавлена рандомизация входных данных
 ### 2. Добавлены последние тесты программы
 > [test.md](https://github.com/Grisha1232/ABC_HW4/blob/bf570ae997d820c5a4f81d7a6b207aa9c2b395dd/Tests/test.md)
+
+Meow <3
