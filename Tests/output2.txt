@@ -1,0 +1,122 @@
+days left: 2
+flower number 2 start to fade
+Gardener 1 water the flower number 2
+flower number 4 start to fade
+Gardener 2 water the flower number 4
+flower number 6 start to fade
+Gardener 2 water the flower number 6
+flower number 8 start to fade
+Gardener 2 water the flower number 8
+flower number 10 start to fade
+Gardener 2 water the flower number 10
+flower number 12 start to fade
+Gardener 2 water the flower number 12
+flower number 14 start to fade
+Gardener 2 water the flower number 14
+flower number 16 start to fade
+Gardener 2 water the flower number 16
+flower number 18 start to fade
+Gardener 2 water the flower number 18
+flower number 20 start to fade
+Gardener 2 water the flower number 20
+flower number 22 start to fade
+Gardener 2 water the flower number 22
+flower number 24 start to fade
+Gardener 2 water the flower number 24
+flower number 26 start to fade
+Gardener 2 water the flower number 26
+flower number 28 start to fade
+Gardener 2 water the flower number 28
+flower number 30 start to fade
+Gardener 2 water the flower number 30
+flower number 32 start to fade
+Gardener 2 water the flower number 32
+flower number 34 start to fade
+Gardener 2 water the flower number 34
+flower number 36 start to fade
+Gardener 2 water the flower number 36
+flower number 38 start to fade
+Gardener 2 water the flower number 38
+flower number 40 start to fade
+Gardener 2 water the flower number 40
+days left: 1
+flower number 1 start to fade
+Gardener 2 water the flower number 1
+flower number 2 start to fade
+Gardener 1 water the flower number 2
+flower number 3 start to fade
+Gardener 2 water the flower number 3
+flower number 4 start to fade
+Gardener 2 water the flower number 4
+flower number 5 start to fade
+Gardener 1 water the flower number 5
+flower number 6 start to fade
+Gardener 2 water the flower number 6
+flower number 7 start to fade
+Gardener 1 water the flower number 7
+flower number 8 start to fade
+Gardener 2 water the flower number 8
+flower number 9 start to fade
+Gardener 1 water the flower number 9
+flower number 10 start to fade
+Gardener 2 water the flower number 10
+flower number 11 start to fade
+Gardener 1 water the flower number 11
+flower number 12 start to fade
+Gardener 2 water the flower number 12
+flower number 13 start to fade
+Gardener 1 water the flower number 13
+flower number 14 start to fade
+Gardener 2 water the flower number 14
+flower number 15 start to fade
+Gardener 1 water the flower number 15
+flower number 16 start to fade
+Gardener 2 water the flower number 16
+flower number 17 start to fade
+Gardener 1 water the flower number 17
+flower number 18 start to fade
+Gardener 2 water the flower number 18
+flower number 19 start to fade
+Gardener 1 water the flower number 19
+flower number 20 start to fade
+Gardener 2 water the flower number 20
+flower number 21 start to fade
+Gardener 2 water the flower number 21
+flower number 22 start to fade
+Gardener 1 water the flower number 22
+flower number 23 start to fade
+Gardener 2 water the flower number 23
+flower number 24 start to fade
+Gardener 1 water the flower number 24
+flower number 25 start to fade
+Gardener 2 water the flower number 25
+flower number 26 start to fade
+Gardener 1 water the flower number 26
+flower number 27 start to fade
+Gardener 2 water the flower number 27
+flower number 28 start to fade
+Gardener 1 water the flower number 28
+flower number 29 start to fade
+Gardener 2 water the flower number 29
+flower number 30 start to fade
+Gardener 1 water the flower number 30
+flower number 31 start to fade
+Gardener 1 water the flower number 31
+flower number 32 start to fade
+Gardener 2 water the flower number 32
+flower number 33 start to fade
+Gardener 1 water the flower number 33
+flower number 34 start to fade
+Gardener 2 water the flower number 34
+flower number 35 start to fade
+Gardener 1 water the flower number 35
+flower number 36 start to fade
+Gardener 2 water the flower number 36
+flower number 37 start to fade
+Gardener 2 water the flower number 37
+flower number 38 start to fade
+Gardener 1 water the flower number 38
+flower number 39 start to fade
+Gardener 1 water the flower number 39
+flower number 40 start to fade
+Gardener 1 water the flower number 40
