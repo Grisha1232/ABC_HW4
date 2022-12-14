@@ -64,11 +64,8 @@ void *waterFlower(void *param) {
             pthread_mutex_lock(&mutex_gardener);// Блокируем другому садовнику читать одну и туже память
             int i = *indexes_for_gardeners.begin();
             pthread_mutex_lock(&mutex_cout);
-            if (!is_file_input) {
-                cout << "Gardener " << gar->id << " water the flower number " << i + 1 << "\n";
-            } else {
-                into_the_out_file += "Gardener " + to_string(gar->id) + " water the flower number " + to_string(i + 1) + "\n";
-            }
+            cout << "Gardener " << gar->id << " water the flower number " << i + 1 << "\n";
+            into_the_out_file += "Gardener " + to_string(gar->id) + " water the flower number " + to_string(i + 1) + "\n";
             pthread_mutex_unlock(&mutex_cout);
             flowers.at(i) = 0;                                         // поливаем цветочек
             indexes_for_gardeners.erase(indexes_for_gardeners.begin());// Удаляем индекс политого цветочка, чтобы его не полил другой садовник
@@ -80,11 +77,8 @@ void *waterFlower(void *param) {
         if (!indexes_for_gardeners.empty()) {
             int i = *indexes_for_gardeners.begin();
             pthread_mutex_lock(&mutex_cout);
-            if (!is_file_input) {
-                cout << "Gardener " << gar->id << " water the flower number " << i + 1 << "\n";
-            } else {
-                into_the_out_file += "Gardener " + to_string(gar->id) + " water the flower number " + to_string(i + 1) + "\n";
-            }
+            cout << "Gardener " << gar->id << " water the flower number " << i + 1 << "\n";
+            into_the_out_file += "Gardener " + to_string(gar->id) + " water the flower number " + to_string(i + 1) + "\n";
             pthread_mutex_unlock(&mutex_cout);
             flowers.at(i) = 0;                                         // поливаем цветочек
             indexes_for_gardeners.erase(indexes_for_gardeners.begin());// Удаляем индекс политого цветочка, чтобы его не полил другой садовник
@@ -98,10 +92,10 @@ void *waterFlower(void *param) {
 // Указываем какие цветочки начнут вянуть
 void *specifyWhichFlowersGonnaFade(void *param) {
     sleep(2);
-    while (days) {                      // Пока дни наблюдений не закончились продолжаем наблюдать
-        if (work_is_done) {             // Если предыдущая работа выполнена -> вводим другие данные и наблюдаем
+    while (days) {         // Пока дни наблюдений не закончились продолжаем наблюдать
+        if (work_is_done) {// Если предыдущая работа выполнена -> вводим другие данные и наблюдаем
             cout << "days left: " << days << "\n";
-            if (is_console_input) {     // Консольный ввод
+            if (is_console_input) {// Консольный ввод
                 int n;
                 cout << "How many flowers gonna fade today? (1 < n <= 40):";
                 cin >> n;
@@ -133,16 +127,13 @@ void *specifyWhichFlowersGonnaFade(void *param) {
             }
             work_is_done = false;
             for (int i: indexes) {
-                sleep(1);                               // Цветочки вянут не все моментально
-                pthread_mutex_lock(&mutex_flowers); // Блокируем изменение переменной
+                sleep(1);                          // Цветочки вянут не все моментально
+                pthread_mutex_lock(&mutex_flowers);// Блокируем изменение переменной
                 flowers.at(i) = 1;
                 pthread_mutex_lock(&mutex_cout);
-                if (!is_file_input) {
-                    string line = "flower number " + to_string(i + 1) + " start to fade\n";
-                    cout << line;
-                } else {
-                    into_the_out_file += "flower number " + to_string(i + 1) + " start to fade\n";
-                }
+                string line = "flower number " + to_string(i + 1) + " start to fade\n";
+                cout << line;
+                into_the_out_file += line;
                 pthread_mutex_unlock(&mutex_cout);
                 indexes_for_gardeners.push_back(i);  // Добавляем в переменную индекс цветка
                 pthread_mutex_unlock(&mutex_flowers);// даем доступ переменной
