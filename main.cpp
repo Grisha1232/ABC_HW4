@@ -58,37 +58,54 @@ struct Gardener {
 // Садовник поливает цветок
 void *waterFlower(void *param) {
     auto *gar = (Gardener *) param;
-    while (days) {                          // Пока дни наблюдений не кончились продолжаем работать
-        sleep(2);                           // Садовники не флэш чтобы моментально реагировать на появление увядающего цветка
-        pthread_mutex_lock(&mutex_gardener);// Блокируем другому садовнику читать одну и туже память
-        if (!indexes_for_gardeners.empty()) {
+    while (days) {// Пока дни наблюдений не кончились продолжаем работать
+        sleep(2); // Садовники не флэш чтобы моментально реагировать на появление увядающего цветка
+        if (!indexes_for_gardeners.empty() && indexes_for_gardeners.size() >= 2) {
+            pthread_mutex_lock(&mutex_gardener);// Блокируем другому садовнику читать одну и туже память
             int i = *indexes_for_gardeners.begin();
+            pthread_mutex_lock(&mutex_cout);
             if (!is_file_input) {
                 cout << "Gardener " << gar->id << " water the flower number " << i + 1 << "\n";
             } else {
                 into_the_out_file += "Gardener " + to_string(gar->id) + " water the flower number " + to_string(i + 1) + "\n";
             }
+            pthread_mutex_unlock(&mutex_cout);
             flowers.at(i) = 0;                                         // поливаем цветочек
             indexes_for_gardeners.erase(indexes_for_gardeners.begin());// Удаляем индекс политого цветочка, чтобы его не полил другой садовник
-
+            sleep(1);                                                  // отдыхаем после проделанного
+            pthread_mutex_unlock(&mutex_gardener);                     // Даем возможность поработать другому садовнику
+            continue;
+        }
+        pthread_mutex_lock(&mutex_gardener);// Блокируем другому садовнику читать одну и туже память
+        if (!indexes_for_gardeners.empty()) {
+            int i = *indexes_for_gardeners.begin();
+            pthread_mutex_lock(&mutex_cout);
+            if (!is_file_input) {
+                cout << "Gardener " << gar->id << " water the flower number " << i + 1 << "\n";
+            } else {
+                into_the_out_file += "Gardener " + to_string(gar->id) + " water the flower number " + to_string(i + 1) + "\n";
+            }
+            pthread_mutex_unlock(&mutex_cout);
+            flowers.at(i) = 0;                                         // поливаем цветочек
+            indexes_for_gardeners.erase(indexes_for_gardeners.begin());// Удаляем индекс политого цветочка, чтобы его не полил другой садовник
+            sleep(1);
         }
         pthread_mutex_unlock(&mutex_gardener);// Даем возможность поработать другому садовнику
-        sleep(1); // отдыхаем после проделанного
     }
     return nullptr;
 }
 
 // Указываем какие цветочки начнут вянуть
 void *specifyWhichFlowersGonnaFade(void *param) {
-    while (days) {         // Пока дни наблюдений не закончились продолжаем наблюдать
-        if (work_is_done) {// Если предыдущая работа выполнена -> вводим другие данные и наблюдаем
-            indexes_for_gardeners.clear();
-            int last_a;
-            if (is_console_input) {// Консольный ввод
+    sleep(2);
+    while (days) {                      // Пока дни наблюдений не закончились продолжаем наблюдать
+        if (work_is_done) {             // Если предыдущая работа выполнена -> вводим другие данные и наблюдаем
+            cout << "days left: " << days << "\n";
+            if (is_console_input) {     // Консольный ввод
                 int n;
                 cout << "How many flowers gonna fade today? (1 < n <= 40):";
                 cin >> n;
-                indexes = std::vector<int>(n);
+                indexes = vector<int>(n);
                 cout << "Enter " << n << " index of flower that will fade at night divided by space:";
                 for (int i = 0; i < n; ++i) {
                     cin >> indexes.at(i);
@@ -97,28 +114,27 @@ void *specifyWhichFlowersGonnaFade(void *param) {
             } else if (is_file_input) {// Файловый ввод
                 int n;
                 input >> n;
-                indexes = std::vector<int>(n);
+                indexes = vector<int>(n);
                 for (int i = 0; i < n; ++i) {
                     input >> indexes.at(i);
                 }
             } else {// Рандомный ввод
                 srand(seed++);
                 int n = rand() % 39 + 1;
-                indexes = std::vector<int>(n);
+                indexes = vector<int>(n);
                 for (int i = 0; i < n; ++i) {
                     int a = rand() % 40;
-                    if (a == last_a) {
-                        a++;
-                        a = a % 40;
+                    while (std::find(indexes.begin(), indexes.end(), a) != indexes.end()) {
+                        a = rand() % 40;
                     }
                     indexes.at(i) = a;
-                    last_a = a;
                 }
+                cout << "Number of flowers that will fade today: " << n << "\n";
             }
             work_is_done = false;
             for (int i: indexes) {
-                sleep(1);                          // Цветочки вянут не все моментально
-                pthread_mutex_lock(&mutex_flowers);// Блокируем изменение переменной
+                sleep(1);                               // Цветочки вянут не все моментально
+                pthread_mutex_lock(&mutex_flowers); // Блокируем изменение переменной
                 flowers.at(i) = 1;
                 pthread_mutex_lock(&mutex_cout);
                 if (!is_file_input) {
